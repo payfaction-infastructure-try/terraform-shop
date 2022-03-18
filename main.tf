@@ -49,7 +49,7 @@ resource "aws_lb_target_group" "shop_tg" {
 
 resource "aws_lb_listener_rule" "shop_listener_rule" {
   listener_arn = data.terraform_remote_state.main_infrastructure.outputs.lb_listener.arn
-  priority     = 100
+  priority     =  99
 
   action {
     type             = "forward"
@@ -64,7 +64,7 @@ resource "aws_lb_listener_rule" "shop_listener_rule" {
 
 module "app_infrastructure" {
   source  = "payfaction-infastructure-try/infrastructure/application"
-  version = "0.0.8"
+  version = "0.0.9"
 
   aws_resource_name_prefix = var.AWS_RESOURCE_NAME_PREFIX
   cluster_id = data.terraform_remote_state.main_infrastructure.outputs.cluster_id
